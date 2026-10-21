@@ -1,4 +1,4 @@
-"""Command line interface."""
+""""Command line interface."""
 
 from __future__ import annotations
 
@@ -101,7 +101,9 @@ def main(argv: list[str] | None = None) -> int:
         except (OSError, json.JSONDecodeError) as exc:
             print(f"error: could not load baseline {args.baseline}: {exc}", file=sys.stderr)
             return EXIT_USAGE
-        baseline_findings = baseline_report.get("findings") if isinstance(baseline_report, dict) else None
+        baseline_findings = (
+            baseline_report.get("findings") if isinstance(baseline_report, dict) else None
+        )
         if not isinstance(baseline_findings, list):
             print(
                 f"error: baseline {args.baseline} must be a JSON report with a findings array",
@@ -150,7 +152,9 @@ def main(argv: list[str] | None = None) -> int:
     rep["summary"]["baselined"] = len(rep["findings"]) - len(remaining)
     rep["findings"] = remaining
     for severity in SEVERITIES:
-        rep["summary"][severity] = sum(1 for finding in remaining if finding["severity"] == severity)
+        rep["summary"][severity] = sum(
+            1 for finding in remaining if finding["severity"] == severity
+        )
     rep["summary"]["total"] = len(remaining)
     text = render(rep, args.format)
     if args.output:
