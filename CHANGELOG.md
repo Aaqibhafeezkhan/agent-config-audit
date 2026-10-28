@@ -6,6 +6,10 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- `--baseline FILE` drops findings whose (id, file, evidence) is in an earlier JSON report; they are counted under `summary.baselined` and `--fail-on` applies to the rest (#12). Thanks @Aaqibhafeezkhan.
+
 ## [0.3.0] - 2026-10-16
 
 ### Added
