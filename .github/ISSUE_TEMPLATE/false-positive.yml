@@ -1,0 +1,89 @@
+name: False positive report
+description: Report benign prose or configuration that agent-config-audit flags incorrectly.
+title: "[False positive]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form only for a finding that is benign. **Redact secrets and sensitive data before submitting.** Do not include real tokens, credentials, private keys, or personal information.
+  - type: dropdown
+    id: rule_id
+    attributes:
+      label: Rule ID
+      description: Select the rule that produced the false positive.
+      options:
+        - PERM-001
+        - PERM-002
+        - PERM-003
+        - PERM-004
+        - PERM-005
+        - PERM-006
+        - PERM-007
+        - PERM-008
+        - PERM-009
+        - PERM-010
+        - PERM-011
+        - PERM-012
+        - PERM-013
+        - HOOK-001
+        - HOOK-002
+        - HOOK-003
+        - HOOK-004
+        - HOOK-005
+        - HOOK-006
+        - HOOK-007
+        - HOOK-008
+        - MCP-001
+        - MCP-002
+        - MCP-003
+        - MCP-004
+        - MCP-005
+        - MCP-006
+        - MCP-007
+        - MCP-008
+        - SEC-001
+        - INJ-001
+        - INJ-002
+        - INJ-003
+        - INJ-004
+        - INJ-005
+        - INJ-006
+        - INJ-007
+        - INJ-008
+        - INJ-009
+        - SKILL-001
+        - SKILL-002
+        - PLUGIN-001
+        - PLUGIN-002
+        - FILE-001
+        - CFG-001
+    validations:
+      required: true
+  - type: textarea
+    id: false_positive_text
+    attributes:
+      label: Exact sentence or configuration fragment (redacted)
+      description: Paste the smallest relevant excerpt. Replace any secrets or sensitive values with placeholders.
+      placeholder: "The exact benign sentence or configuration fragment, with secrets redacted"
+      render: text
+    validations:
+      required: true
+  - type: dropdown
+    id: host
+    attributes:
+      label: Host
+      description: Which agent host or configuration format contains this text?
+      options:
+        - Claude Code
+        - Cursor
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+      description: Explain why the sentence or fragment is benign and what the rule should do instead.
+      placeholder: "Explain the expected behavior"
+    validations:
+      required: true
